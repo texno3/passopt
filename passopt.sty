@@ -8,17 +8,17 @@
 % The latest version of this license is in
 %   https://creativecommons.org/licenses/by/4.0/legalcode
 \NeedsTeXFormat{LaTeX2e}[2021/11/15]
-\ProvidesExplPackage{passopt}{2024/07/14}{1.01}
+\ProvidesExplPackage{passopt}{2024/07/15}{1.01}
   {Passing options to packages or classes}
 
 \cs_generate_variant:Nn \tl_if_blank:nTF { v }
-\cs_set:Npn \po_add_before_hook:nnn #1#2
+\cs_new_protected:Npn \po_add_before_hook:nnn #1#2
   { \hook_gput_code:nnn { #1/#2/before } { passopt } }
 \cs_new_protected:Npn \po_set_options_list:nnnnn #1#2#3#4#5
   {
     \po_add_before_hook:nnn {#1} {#5}
       {
-        \cs_gset:cpx { @raw@opt@#5.#2 }
+        \cs_set:cpx { @raw@opt@#5.#2 }
           {
             \IfBooleanTF{#3}
               {\exp_not:o {#4}}
@@ -28,7 +28,7 @@
                   { \exp_not:v { @raw@opt@#5.#2 },\exp_not:o {#4} }
               }
           }
-        \exp_args:Nc \protected@xdef { opt@#5.#2 }
+        \exp_args:Nc \protected@edef { opt@#5.#2 }
           {
             \exp_last_unbraced:Nv
               \zap@space { @raw@opt@#5.#2 }~\@empty
