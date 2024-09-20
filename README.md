@@ -1,5 +1,5 @@
 # The `passopt` package
-Passing options to packages or classes (v1.01)
+Passing options to packages or classes (v1.01a)
 
 ## Abstract
 `passopt` allow reset the global options of a loaded macro package or document class, or to change the position of the pre-passed options in the list to the right.

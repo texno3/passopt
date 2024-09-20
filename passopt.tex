@@ -5,8 +5,8 @@
 \setcnltx
   {
     package           = passopt,
-    version           = v1.01,
-    date              = 2024/07/15,
+    version           = v1.01a,
+    date              = 2024/07/17,
     authors           = Qu Yi,
     info              = Passing options to packages or classes,
     email             = toquyi@163.com,
@@ -42,7 +42,6 @@
 \setlist{nosep,topsep = \smallskipamount}
 \setlist[description,1]{leftmargin = \parindent}
 \setlist[itemize,1]{leftmargin = *}
-\deffootnote{2em}{1em}{\llap{\color{red}\thefootnotemark.\space}}
 \makeatother
 
 \begin{document}
@@ -60,7 +59,7 @@ For a developer, there are some cases where packages and classes may load other 
 In the example above, the list of options that the \pkg*{mypackage} macro package ends up executing is \fbox{\code{opt1,opt2=A,opt3}}. If you wish to \textcolor{red}{disable} the pre-enabled options or place the newly enabled options to the \textcolor{red}{right} of the list (last executed), then you need to modify the code of the load command in the package or class file, but this is not recommended for public sharing. Therefore, this macro package provides commands to reset the options and change the order of the new options.
 
 \section{User commands}
-Four commands are provided to set the options to be passed later, all of which are \textcolor{red}{locally} assigned.
+Four commands are provided to set the options to be passed later, all of which are \textcolor{red}{locally} assigned. Subsequent loading of the macro package is not must required due to the hook mechanism used to modify the list of options.
 \begin{commands}
   \command{SetOptionsToPackage}[\sarg\marg{options list}\marg{package}]
   Passes options to the macro package, the location of the passed options is to the right of the options used when loading the macro package. If an asterisk parameter is used, only the passed options were ultimately retained.
@@ -95,7 +94,7 @@ Thanks Jonathan P. Spratte for the improvement suggestions.
 \appendix
 \begin{changelog}[simple]
   \begin{version}[v = 1.01,date = 2024/07/15]
-  \item Synchronization modifier for lists of \code{@raw@opt@} and \code{opt@}.
+  \item Synchronized modification for lists of \code{@raw@opt@} and \code{opt@}.
   \item Options that are set are expanded once rather than fully expanded.
   \end{version}
 \end{changelog}
